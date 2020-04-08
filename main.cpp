@@ -70,19 +70,18 @@ public:
     }
 
 
-    void operator=(const Vector &obj) {
+    Vector &operator=(const Vector &obj) {
         this->size = obj.size;
         this->mass = new dataType[obj.size];
-        for (int i = 0; i < obj.size; i++){
+        for (int i = 0; i < obj.size; i++) {
             this->mass[i] = obj.mass[i];
         }
+        return *this;
     }
 
-    void operator[](const Vector &obj) {
-        cout << "this" << this << endl;
-
+    int &operator[](int ind) {
+        return mass[ind];
     }
-
 
 };
 
@@ -94,19 +93,25 @@ int main() {
         cout << gg.out(i) << endl;
     }
     Vector<int> wp(2);
-
-    wp = gg;
+    Vector<int> ez(11);
+    wp = ez = gg;
 
     gg.pushBack(228);
     cout << endl << "gg after pushback";
     for (int i = 0; i < 8; i++) {
         cout << gg.out(i) << endl;
     }
-    cout<<endl;
+    cout << endl;
     for (int i = 0; i < 10; i++) {
         cout << wp.out(i) << endl;
     }
+
+    for (int i = 0; i < 10; i++) {
+        cout << ez.out(i) << endl;
+    }
+
     cout << "Is it empty ? - " << gg.isEmpty() << endl << "that's the size - " << gg.sizeOf() << endl;
 
+    cout << "pepe" << gg[1] << endl;
     return 0;
 }
